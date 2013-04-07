@@ -27,3 +27,6 @@ kbd-cart-cmd
 and connect to the system with:
 
 connect.sh [robot] [left|right]
+
+This program was made by Ingo Kresse in the Technical University of Munich.
+This program is now maintained by ARCOS-Lab in the University of Costa Rica.
