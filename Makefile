@@ -1,11 +1,32 @@
-default: kbd-cart-cmd
+NAME=kbd-cart-cmd
+PREFIX ?= ${HOME}/local/DIR/${NAME}
+DEB_TARGET=kbd-cart-cmd-0.1-Linux.deb
 
-CFLAGS = -g
-#CFLAGS = -O3
 
+default: build
 
-kbd-cart-cmd: kbd-cart-cmd.cc
-	g++ ${CFLAGS}   -lpthread -L${HOME}/local/lib -lYARP_OS -lYARP_init -o kbd-cart-cmd kbd-cart-cmd.cc
+configure:
+	mkdir -p build
+	cd build && cmake -DCMAKE_INSTALL_PREFIX=${PREFIX} ..
+
+build: configure
+	cd build && make
+
+install: build
+	cd build && make install
+
+xstow_install: install
+	cd ${PREFIX}/../ && xstow ${NAME}
+
+xstow_uninstall:
+	cd ${PREFIX}/../ && xstow -D ${NAME} && rm -rf ${NAME}
+
+deb: build
+	cd build && make package
+
+deb_install: deb
+	cd build && sudo dpkg -i ${DEB_TARGET}
+
 clean:
-	rm -f kbd-cart-cmd
+	rm -rf build/
 

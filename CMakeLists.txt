@@ -1,12 +1,7 @@
-# Copyright: (C) 2010 RobotCub Consortium
-# Author: Paul Fitzpatrick
-# CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
-
 # YARP needs CMake 2.6 or greater
 cmake_minimum_required(VERSION 2.6.4)
 
 PROJECT(kbd-cart-cmd)
-
 
 # find YARP
 find_package(YARP REQUIRED)
@@ -20,7 +15,7 @@ add_executable(kbd-cart-cmd kbd-cart-cmd.cc)
 # link with YARP libraries
 target_link_libraries(kbd-cart-cmd ${YARP_LIBRARIES})
 
-INSTALL(PROGRAMS kbd-cart-cmd run_right.sh run_left.sh connect.sh DESTINATION bin)
+INSTALL(PROGRAMS build/kbd-cart-cmd run_right.sh run_left.sh connect.sh DESTINATION bin)
 
 SET(CPACK_GENERATOR "DEB")
 SET(CPACK_PACKAGE_VERSION "0.1")
