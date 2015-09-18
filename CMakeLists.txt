@@ -13,7 +13,7 @@ include_directories(${YARP_INCLUDE_DIRS})
 add_executable(kbd-cart-cmd kbd-cart-cmd.cc)
 
 # link with YARP libraries
-target_link_libraries(kbd-cart-cmd ${YARP_LIBRARIES})
+target_link_libraries(kbd-cart-cmd ${YARP_LIBRARIES} -lpthread)
 
 INSTALL(PROGRAMS build/kbd-cart-cmd run_right.sh run_left.sh connect.sh DESTINATION bin)
 
